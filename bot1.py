@@ -5,12 +5,67 @@ import pickle
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import sys
+from datetime import datetime, timedelta
+import traceback
+import platform
+# import undetected_chromedriver as uc
 
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 import csv
 import os
+os_name = platform.system()
+
+options = webdriver.ChromeOptions()
+if os_name == "Windows":
+    print("Running for Windows...")
+    chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    user_data_dir = r"C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\"
+    options.add_argument(f"--user-data-dir={user_data_dir}")
+
+    # provide the profile name with which we want to open browser
+    options.add_argument(r'--profile-directory=Default')
+    # from Screenshot import Screenshot
+
+else:
+    print("Running For Mac...")
+    # provide location where chrome stores profiles
+    user_data_dir = f"/Users/techesthete0001/Library/Application Support/Google/Chrome"
+    chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    options.add_argument(f"--user-data-dir={user_data_dir}")
+
+    # provide the profile name with which we want to open browser
+    options.add_argument(r'--profile-directory=Profile 1')
+
+# disable the AutomationControlled feature of Blink rendering engine
+options.add_argument('--disable-blink-features=AutomationControlled')
+
+# disable pop-up blocking
+options.add_argument('--disable-popup-blocking')
+
+# start the browser window in maximized mode
+options.add_argument('--start-maximized')
+
+# disable extensions
+options.add_argument('--disable-extensions')
+
+# disable sandbox mode
+options.add_argument('--no-sandbox')
+
+# disable shared memory usage
+options.add_argument('--disable-dev-shm-usage')
+
+service = Service(chrome_path)  # Replace with the path to your Chrome WebDriver executable
+
+browser = webdriver.Chrome(options=options)
 
 # Define constants and file paths
 SEARCH_TERM = "fleuriste"
