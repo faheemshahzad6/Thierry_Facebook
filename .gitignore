@@ -1,0 +1,12 @@
+/.idea
+3bots.rar
+_igetintopc.com_114.0.5735.110_chrome_installer_x64.exe
+*.xls
+*.xlsx
+*.csv
+*.txt
+*.png
+/3bots/bot1.py
+/3bots/bot2.py
+/3bots/bot3.py
+/main.py
