@@ -11,7 +11,7 @@ options = webdriver.ChromeOptions()
 username = getpass.getuser()
 
 
-def get_browser(user_data_dir):
+def get_browser(user_data_dir, profile):
     # if os_name == "nt":
     # print("Running for Windows...")
 
@@ -25,7 +25,7 @@ def get_browser(user_data_dir):
     options.add_argument(f"--user-data-dir={user_data_dir}")
 
     # provide the profile name with which we want to open browser
-    # options.add_argument(r'--profile-directory=Default')
+    options.add_argument(f'--profile-directory={profile}')
     # from Screenshot import Screenshot
 
     # disable the AutomationControlled feature of Blink rendering engine

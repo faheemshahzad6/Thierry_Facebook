@@ -15,8 +15,8 @@ from selenium.common.exceptions import NoSuchElementException
 
 from get_browser import get_browser
 
-user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
-driver = get_browser(user_data_dir)
+user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
+driver = get_browser(user_data_dir=user_data_dir, profile="Default")
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
 wait_time = 10

@@ -31,8 +31,8 @@ url_list = df["URL"].tolist()
 print('s')
 
 
-user_data_dir = r'C:\\Users\\th_im\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4'
-driver = get_browser(user_data_dir)
+user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
+driver = get_browser(user_data_dir=user_data_dir, profile="Profile 4")
 
 
 def wait_until_935am():
@@ -45,10 +45,11 @@ def wait_until_935am():
             # Replace the following line with your work logic or function call
             print("Working...")
             break
+
+
 while True:
-    
     wait_until_935am()
-    driver = uc.Chrome(use_subprocess=True, options=options)
+    # driver = uc.Chrome(use_subprocess=True, options=options)
     import pyautogui
     import random
     import time
@@ -67,7 +68,7 @@ while True:
         if i in x:
             continue
         driver.get(i)
-        driver.maximize_window()
+        # driver.maximize_window()
         q = 0
         time.sleep(4)
         print(i)
@@ -161,14 +162,4 @@ while True:
                 time.sleep(1)
                 q+=1
                 continue
-    def wait_until2_935am():
-        while True:
-            current_time = datetime.datetime.now().time()
-            target_time = datetime.time(9, 35)  # 10 am
 
-            if current_time <= target_time:
-                print("It's 9:35 Starting the work.")
-                # Replace the following line with your work logic or function call
-                print("Working...")
-                break
-    wait_until2_935am()

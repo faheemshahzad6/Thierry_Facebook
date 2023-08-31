@@ -22,8 +22,8 @@ SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 CSV_FILE_PATH = os.path.join(SCRIPT_DIRECTORY, DATA_FILE)
 CITIES_FILE_PATH = os.path.join(SCRIPT_DIRECTORY, CITIES_FILE)
 
-user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
-driver = get_browser(user_data_dir)
+user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
+driver = get_browser(user_data_dir=user_data_dir, profile="Default")
 
 
 # Function to scroll down to the end of search results
