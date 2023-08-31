@@ -1,4 +1,3 @@
-
 import pandas as pd
 
 from get_browser import get_browser
@@ -30,9 +29,7 @@ url_list = df["URL"].tolist()
 
 print('s')
 
-
-user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
-driver = get_browser(user_data_dir=user_data_dir, profile="Profile 4")
+profiles_list = ["Profile 1", "Profile 2", "Profile 3", "Profile 4", "Profile 5", "Profile 6"]
 
 
 def wait_until_935am():
@@ -47,23 +44,30 @@ def wait_until_935am():
             break
 
 
-while True:
-    wait_until_935am()
-    # driver = uc.Chrome(use_subprocess=True, options=options)
-    import pyautogui
-    import random
-    import time
+# while True:
+wait_until_935am()
+# driver = uc.Chrome(use_subprocess=True, options=options)
+import pyautogui
+import random
+import time
 
-    def read_delay_from_file(filename):
-        with open(filename, 'r') as file:
-            content = file.read().strip()
-            min_delay, max_delay = map(int, content.split(':'))
-            return min_delay, max_delay
+
+def read_delay_from_file(filename):
+    with open(filename, 'r') as file:
+        content = file.read().strip()
+        min_delay, max_delay = map(int, content.split(':'))
+        return min_delay, max_delay
+
+
+for profile in profiles_list:
+    user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
+    driver = get_browser(user_data_dir=user_data_dir, profile=profile)
     cx = 0
     for i in url_list:
-        if cx == 40:
+        if cx == 20:
+            driver.quit()
             break
-        with open('sent.txt','r') as f:
+        with open('sent.txt', 'r') as f:
             x = f.read()
         if i in x:
             continue
@@ -72,39 +76,41 @@ while True:
         q = 0
         time.sleep(4)
         print(i)
-        with open('sent.txt','a') as f:
-            f.write(i+'\n')
+        with open('sent.txt', 'a') as f:
+            f.write(i + '\n')
         time.sleep(4)
         while True:
             try:
-                
+
                 if q == 8:
                     break
                 if q != -2:
-                    driver.find_element(By.XPATH,"/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[4]/div/div/div[1]/div/div/div").click()
-                k= 0
+                    driver.find_element(By.XPATH,
+                                        "/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[4]/div/div/div[1]/div/div/div").click()
+                k = 0
                 while True:
                     try:
                         if k == 10:
-                            k=-1
+                            k = -1
                             break
-                        driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]/div/div/div[1]/p')
+                        driver.find_element(By.XPATH,
+                                            '/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]/div/div/div[1]/p')
                         print('pp')
                         break
                     except:
                         time.sleep(1)
-                        k+=1
+                        k += 1
                         continue
                 if k == -1:
                     break
-                k= 0
+                k = 0
                 while True:
                     try:
                         if k == 10:
-                            k=-1
+                            k = -1
                             break
                         image_path = 'assets/chat.png'
-                        position = pyautogui.locateOnScreen(image_path, confidence=0.8,grayscale=True)
+                        position = pyautogui.locateOnScreen(image_path, confidence=0.8, grayscale=True)
                         if position is not None:
                             # Move the mouse to the center of the located image
                             image_center = pyautogui.center(position)
@@ -113,17 +119,18 @@ while True:
                             break
                     except:
                         time.sleep(1)
-                        k+=1
+                        k += 1
                         continue
                 if k == -1:
                     break
                 time.sleep(3)
-                with open('message.txt','r',encoding='utf-8') as f:
+                with open('message.txt', 'r', encoding='utf-8') as f:
                     msg = f.read()
                 import pyperclip
+
                 for i in msg:
                     if i == '\n':
-                        pyautogui.hotkey('shift','enter')
+                        pyautogui.hotkey('shift', 'enter')
                     else:
                         pyperclip.copy(i)
 
@@ -134,13 +141,13 @@ while True:
                 pyautogui.press('enter')
                 while True:
                     image_path = 'assets/close.png'
-                    position = pyautogui.locateOnScreen(image_path, confidence=0.7,grayscale=False)
+                    position = pyautogui.locateOnScreen(image_path, confidence=0.7, grayscale=False)
                     if position is not None:
                         # Move the mouse to the center of the located image
                         image_center = pyautogui.center(position)
                         pyautogui.click(image_center.x, image_center.y)
                         break
-                cx+=1
+                cx += 1
                 filename = 'delay.txt'
                 min_delay, max_delay = read_delay_from_file(filename)
 
@@ -150,16 +157,16 @@ while True:
                 print(f"Waiting for {random_delay} seconds...")
                 time.sleep(random_delay)
                 break
-                
-                
+
+
             except:
                 try:
-                    driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[4]/div/div/div[2]/div/div/div').click()
+                    driver.find_element(By.XPATH,
+                                        '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[4]/div/div/div[2]/div/div/div').click()
                     q = -2
                     continue
                 except:
                     pass
                 time.sleep(1)
-                q+=1
+                q += 1
                 continue
-
