@@ -63,11 +63,13 @@ for profile in profiles_list:
     user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
     driver = get_browser(user_data_dir=user_data_dir, profile=profile)
     print("Working for: " + profile)
+    time.sleep(3)
     cx = 0
     for i in url_list:
         if cx == 20:
             driver.quit()
             print(f"20 messages sent from {profile} now switching to another profile.")
+            time.sleep(5)
             break
         with open('sent.txt', 'r') as f:
             x = f.read()
@@ -140,14 +142,19 @@ for profile in profiles_list:
                         time.sleep(0.1)
                 time.sleep(2)
                 pyautogui.press('enter')
-                while True:
-                    image_path = 'assets/close.png'
-                    position = pyautogui.locateOnScreen(image_path, confidence=0.7, grayscale=False)
-                    if position is not None:
-                        # Move the mouse to the center of the located image
-                        image_center = pyautogui.center(position)
-                        pyautogui.click(image_center.x, image_center.y)
-                        break
+                image_path = 'assets/close.png'
+                try:
+                    while True:
+                        position = pyautogui.locateOnScreen(image_path, confidence=0.7, grayscale=False)
+                        if position is not None:
+                            # Move the mouse to the center of the located image
+                            image_center = pyautogui.center(position)
+                            pyautogui.click(image_center.x, image_center.y)
+                            break
+                except:
+                    print(f"error: {image_path}")
+                    pass
+
                 cx += 1
                 filename = 'delay.txt'
                 min_delay, max_delay = read_delay_from_file(filename)
@@ -157,6 +164,7 @@ for profile in profiles_list:
 
                 print(f"Waiting for {random_delay} seconds...")
                 time.sleep(random_delay)
+
                 break
 
 
