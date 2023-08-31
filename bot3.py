@@ -83,7 +83,6 @@ for profile in profiles_list:
         time.sleep(4)
         while True:
             try:
-
                 if q == 8:
                     break
                 if q != -2:
