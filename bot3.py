@@ -62,10 +62,12 @@ def read_delay_from_file(filename):
 for profile in profiles_list:
     user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\'
     driver = get_browser(user_data_dir=user_data_dir, profile=profile)
+    print("Working for: " + profile)
     cx = 0
     for i in url_list:
         if cx == 20:
             driver.quit()
+            print(f"20 messages sent from {profile} now switching to another profile.")
             break
         with open('sent.txt', 'r') as f:
             x = f.read()
