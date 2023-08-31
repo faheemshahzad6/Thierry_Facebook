@@ -13,9 +13,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_experimental_option('debuggerAddress', 'localhost:9233')
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+from get_browser import get_browser
+
+user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
+driver = get_browser(user_data_dir)
+
 script_directory = os.path.dirname(os.path.abspath(__file__))
 wait_time = 10
 wait = WebDriverWait(driver, wait_time)

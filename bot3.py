@@ -1,12 +1,7 @@
 
 import pandas as pd
-print('s')
-file_path = "Results.xlsx"
-sheet_name = "Sheet"
-df = pd.read_excel(file_path, sheet_name)
-print('sss')
-# Step 2: Extract the values from the "URLcolumn" into a list
-url_list = df["URL"].tolist()
+
+from get_browser import get_browser
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromiumService
@@ -19,26 +14,26 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+import datetime
 import csv
 import os
 import undetected_chromedriver as uc
 import getpass
-print('s')
-username = getpass.getuser()
-if os.name == 'nt':  # For Windows
-    chrome_path = f"C:/Users/{username}/AppData/Local/Google/Chrome/User Data"
-options = uc.ChromeOptions()
-options.headless = False
-def get_hector_profile_directory():
-    # Replace 'C:\\Users\\th_im\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4'
-    # with the actual path to the "Hector" profile directory.
-    return r'C:\\Users\\th_im\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4'
 
-# Get the path to the "Hector" profile directory
-hector_profile_path = get_hector_profile_directory()
-options.add_argument(f"user-data-dir={hector_profile_path}")
-import datetime
-import time
+print('s')
+file_path = "Results.xlsx"
+sheet_name = "Sheet"
+df = pd.read_excel(file_path, sheet_name)
+print('sss')
+# Step 2: Extract the values from the "URLcolumn" into a list
+url_list = df["URL"].tolist()
+
+print('s')
+
+
+user_data_dir = r'C:\\Users\\th_im\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4'
+driver = get_browser(user_data_dir)
+
 
 def wait_until_935am():
     while True:

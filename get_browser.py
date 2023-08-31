@@ -11,15 +11,16 @@ options = webdriver.ChromeOptions()
 username = getpass.getuser()
 
 
-def get_browser():
+def get_browser(user_data_dir):
     # if os_name == "nt":
     # print("Running for Windows...")
 
     # if os.name == 'nt':  # For Windows
-    chrome_path = f"C:/Users/{username}/AppData/Local/Google/Chrome/User Data/profile 1"
+    # chrome_path = f"C:/Users/{username}/AppData/Local/Google/Chrome/User Data/profile 1"
 
-    # chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
+    # chrome_path = r"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    # user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
+    user_data_dir = user_data_dir
     # user_data_dir = r"C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data\\"
     options.add_argument(f"--user-data-dir={user_data_dir}")
 
@@ -45,7 +46,7 @@ def get_browser():
     # disable shared memory usage
     options.add_argument('--disable-dev-shm-usage')
 
-    service = Service(chrome_path)  # Replace with the path to your Chrome WebDriver executable
+    # service = Service(chrome_path)  # Replace with the path to your Chrome WebDriver executable
 
     browser = webdriver.Chrome(options=options)
     return browser

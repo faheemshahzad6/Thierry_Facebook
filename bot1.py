@@ -12,6 +12,8 @@ import time
 import csv
 import os
 
+from get_browser import get_browser
+
 # Define constants and file paths
 SEARCH_TERM = "fleuriste"
 DATA_FILE = "data.csv"
@@ -20,22 +22,10 @@ SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 CSV_FILE_PATH = os.path.join(SCRIPT_DIRECTORY, DATA_FILE)
 CITIES_FILE_PATH = os.path.join(SCRIPT_DIRECTORY, CITIES_FILE)
 
-import undetected_chromedriver as uc
-import getpass
-username = getpass.getuser()
-if os.name == 'nt':  # For Windows
-    chrome_path = f"C:/Users/{username}/AppData/Local/Google/Chrome/User Data/profile 1"
-options = uc.ChromeOptions()
-options.headless = False
-def get_hector_profile_directory():
-    # Replace 'C:\\Users\\th_im\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 4'
-    # with the actual path to the "Hector" profile directory.
-    return r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
+user_data_dir = r'C:\\Users\\th_im\\Downloads\\Facebook Page Details Scrapper\\data\\Default'
+driver = get_browser(user_data_dir)
 
-# Get the path to the "Hector" profile directory
-hector_profile_path = get_hector_profile_directory()
-options.add_argument(f"user-data-dir={hector_profile_path}")
-driver = uc.Chrome(use_subprocess=True, options=options)
+
 # Function to scroll down to the end of search results
 def scroll_to_end():
     while True:
