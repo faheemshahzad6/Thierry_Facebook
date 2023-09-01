@@ -143,17 +143,17 @@ for profile in profiles_list:
                 time.sleep(2)
                 pyautogui.press('enter')
                 image_path = 'assets/close.png'
-                try:
-                    while True:
-                        position = pyautogui.locateOnScreen(image_path, confidence=0.7, grayscale=False)
-                        if position is not None:
-                            # Move the mouse to the center of the located image
-                            image_center = pyautogui.center(position)
-                            pyautogui.click(image_center.x, image_center.y)
-                            break
-                except:
-                    print(f"error: {image_path}")
-                    pass
+                # try:
+                while True:
+                    position = pyautogui.locateOnScreen(image_path, confidence=0.7, grayscale=False)
+                    if position is not None:
+                        # Move the mouse to the center of the located image
+                        image_center = pyautogui.center(position)
+                        pyautogui.click(image_center.x, image_center.y)
+                        break
+                # except:
+                #     print(f"error: {image_path}")
+                #     pass
 
                 cx += 1
                 filename = 'delay.txt'
